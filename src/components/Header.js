@@ -5,13 +5,12 @@ function Header({ $target }) {
 
   this.state = "오늘 할 일";
 
-  // const [{text, setText}] = useState() -> text -> state, setText -> setState
-
   this.setState = (nextState) => {
     console.log(nextState);
     this.state = nextState;
     this.render();
   };
+  // const [{text, setText}] = useState() -> text -> state, setText -> setState
 
   this.render = () => {
     $header.textContent = this.state;

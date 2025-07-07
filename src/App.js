@@ -8,6 +8,7 @@ function App({ $target }) {
   console.log($target);
 
   const header = new Header({ $target: $div });
+  //header.setState("오늘 할 일!!");
   new TodoForm({ $target: $div });
   new TodoList({ $target: $div });
 }
