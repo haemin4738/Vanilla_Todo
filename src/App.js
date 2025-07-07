@@ -1,24 +1,27 @@
 import Header from "./components/Header.js";
 import TodoForm from "./components/TodoForm.js";
 import TodoList from "./components/TodoList.js";
+import { getItem, setItem } from "./storage.js";
 
 function App({ $target }) {
-  const intialState = [
-    { id: 1, text: "item1", checked: true },
-    { id: 2, text: "item2", checked: false },
-    { id: 3, text: "item3", checked: false },
-  ];
+  const intialState = getItem("todos", [
+    { id: 1, text: "할 일 1", checked: false },
+    { id: 2, text: "할 일 2", checked: false },
+    { id: 3, text: "할 일 3", checked: false },
+  ]);
   let lastId = 4;
 
   const onSubmit = (text) => {
     const nextState = [...todoList.state, { id: lastId, text, checked: false }];
     todoList.setState(nextState);
+    setItem("todos", JSON.stringify(nextState));
     lastId++;
   };
 
   const onDelete = (id) => {
     const nextState = todoList.state.filter((todo) => todo.id !== id);
     todoList.setState(nextState);
+    setItem("todos", JSON.stringify(nextState));
   };
 
   const onToggle = (id) => {
@@ -26,6 +29,7 @@ function App({ $target }) {
       todo.id == id ? { ...todo, checked: !todo.checked } : todo
     );
     todoList.setState(nextState);
+    setItem("todos", JSON.stringify(nextState));
   };
 
   const $page = document.createElement("div");

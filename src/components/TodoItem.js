@@ -21,7 +21,6 @@ function TodoItem({ $target, todo, onToggle, onDelete }) {
             data-id="${todo.id}" 
             class="toggle_btn"
         />
-        ${todo.id} / 
         <span>${todo.text}</span>
         <button 
             data-id="${todo.id}" 
