@@ -21,6 +21,13 @@ function App({ $target }) {
     todoList.setState(nextState);
   };
 
+  const onToggle = (id) => {
+    const nextState = todoList.state.map((todo) =>
+      todo.id == id ? { ...todo, checked: !todo.checked } : todo
+    );
+    todoList.setState(nextState);
+  };
+
   const $page = document.createElement("div");
   $target.appendChild($page);
 
@@ -29,7 +36,12 @@ function App({ $target }) {
 
   new TodoForm({ $target: $page, onSubmit });
 
-  const todoList = new TodoList({ $target: $page, intialState, onDelete });
+  const todoList = new TodoList({
+    $target: $page,
+    intialState,
+    onDelete,
+    onToggle,
+  });
 }
 
 export default App;

@@ -1,4 +1,4 @@
-function TodoList({ $target, intialState, onDelete }) {
+function TodoList({ $target, intialState, onDelete, onToggle }) {
   const $list = document.createElement("div");
   $target.appendChild($list);
 
@@ -14,6 +14,11 @@ function TodoList({ $target, intialState, onDelete }) {
       const id = parseInt(e.target.getAttribute("data-id"));
       //delete 처리
       onDelete(id);
+    } else if (e.target.classList.contains("toggle_btn")) {
+      const id = parseInt(e.target.getAttribute("data-id"));
+      //수정 처리
+      console.log(id);
+      onToggle(id);
     }
   });
 
@@ -31,9 +36,12 @@ function TodoList({ $target, intialState, onDelete }) {
             ${this.state
               .map(
                 (item) => `
-                <li>
+                <li style = "text-decoration : ${
+                  item.checked ? "line-through" : "none"
+                }">
                   <span>
-                  <input type ="checkbox">
+                  <input type ="checkbox"  ${item.checked ? "checked" : ""} 
+                  data-id = "${item.id} " class = "toggle_btn">
                     ${item.text}
                     <button data-id ="${item.id}" class = "del_btn">X</button>
                   </span>
