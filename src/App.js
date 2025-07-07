@@ -16,6 +16,11 @@ function App({ $target }) {
     lastId++;
   };
 
+  const onDelete = (id) => {
+    const nextState = todoList.state.filter((todo) => todo.id !== id);
+    todoList.setState(nextState);
+  };
+
   const $page = document.createElement("div");
   $target.appendChild($page);
 
@@ -24,7 +29,7 @@ function App({ $target }) {
 
   new TodoForm({ $target: $page, onSubmit });
 
-  const todoList = new TodoList({ $target: $page, intialState });
+  const todoList = new TodoList({ $target: $page, intialState, onDelete });
 }
 
 export default App;

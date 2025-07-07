@@ -1,4 +1,4 @@
-function TodoList({ $target, intialState }) {
+function TodoList({ $target, intialState, onDelete }) {
   const $list = document.createElement("div");
   $target.appendChild($list);
 
@@ -14,8 +14,7 @@ function TodoList({ $target, intialState }) {
       const id = parseInt(e.target.getAttribute("data-id"));
       console.log(id);
       //delete 처리
-      const nextState = this.state.filter((item) => item.id !== id);
-      this.setState(nextState);
+      onDelete(id);
     }
   });
 
@@ -33,7 +32,7 @@ function TodoList({ $target, intialState }) {
             ${this.state
               .map(
                 (item) => `
-                <li style ="list-style : none;">
+                <li>
                   <span>
                   <input type ="checkbox">
                     ${item.text}
