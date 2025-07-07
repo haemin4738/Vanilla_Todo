@@ -9,6 +9,16 @@ function TodoList({ $target, intialState }) {
     this.render();
   };
 
+  $list.addEventListener("click", (e) => {
+    if (e.target.classList.contains("del_btn")) {
+      const id = parseInt(e.target.getAttribute("data-id"));
+      console.log(id);
+      //delete 처리
+      const nextState = this.state.filter((item) => item.id !== id);
+      this.setState(nextState);
+    }
+  });
+
   this.render = () => {
     this.state = intialState;
 
@@ -20,7 +30,18 @@ function TodoList({ $target, intialState }) {
     this.render = () => {
       $list.innerHTML = `
         <ul>
-            ${this.state.map((item) => `<li>${item}</li>`).join("")}
+            ${this.state
+              .map(
+                (item) => `
+                <li style ="list-style : none;">
+                  <span>
+                  <input type ="checkbox">
+                    ${item.text}
+                    <button data-id ="${item.id}" class = "del_btn">X</button>
+                  </span>
+                </li>`
+              )
+              .join("")}
         </ul>
     `;
     };

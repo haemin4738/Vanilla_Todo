@@ -6,7 +6,6 @@ function Header({ $target }) {
   this.state = "오늘 할 일";
 
   this.setState = (nextState) => {
-    console.log(nextState);
     this.state = nextState;
     this.render();
   };

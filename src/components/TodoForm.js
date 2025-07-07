@@ -1,6 +1,5 @@
 function TodoForm({ $target, onSubmit }) {
   const $form = document.createElement("form");
-  $form.innerText = "할일 등록 폼";
   $target.appendChild($form);
 
   this.state;

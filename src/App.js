@@ -8,10 +8,12 @@ function App({ $target }) {
     { id: 2, text: "item2", checked: false },
     { id: 3, text: "item3", checked: false },
   ];
+  let lastId = 4;
 
   const onSubmit = (text) => {
-    const nextState = [...todoList.state, text];
+    const nextState = [...todoList.state, { id: lastId, text, checked: false }];
     todoList.setState(nextState);
+    lastId++;
   };
 
   const $page = document.createElement("div");
